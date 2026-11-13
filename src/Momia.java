@@ -13,4 +13,18 @@ public class Momia extends Monstruo implements Regenerable, Furioso
     {
         return longitudVendajes;
     }
+
+    @Override
+    public String regenerarse()
+    {
+        return "La momia se regenera con sus " + longitudVendajes
+            + " metros de vendajes.";
+    }
+
+    @Override
+    public String enfurecerse()
+    {
+        return "La momia se enfurece y ataca con fuerza "
+            + getFuerza() + ".";
+    }
 }

@@ -20,4 +20,18 @@ public class HombreLobo extends Monstruo implements Mordedor, Furioso
     {
         return faseLunar;
     }
+
+    @Override
+    public String morder()
+    {
+        return "El hombre lobo muerde con una ferocidad de "
+            + ferocidad + ".";
+    }
+
+    @Override
+    public String enfurecerse()
+    {
+        return "El hombre lobo se enfurece con la fase lunar "
+            + faseLunar + ".";
+    }
 }
