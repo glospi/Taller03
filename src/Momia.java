@@ -29,8 +29,8 @@ public class Momia extends Monstruo implements Regenerable, Furioso
     }
 
     @Override
-    public void aceptar(VisitorMinijuego visitor)
+    public double aceptar(VisitorMinijuego visitor)
     {
-        visitor.visitar(this);
+        return visitor.visitar(this);
     }
 }

@@ -28,8 +28,8 @@ public class Zombi extends Monstruo implements Mordedor, Regenerable
     }
 
     @Override
-    public void aceptar(VisitorMinijuego visitor)
+    public double aceptar(VisitorMinijuego visitor)
     {
-        visitor.visitar(this);
+        return visitor.visitar(this);
     }
 }

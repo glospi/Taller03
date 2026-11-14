@@ -36,8 +36,8 @@ public class HombreLobo extends Monstruo implements Mordedor, Furioso
     }
 
     @Override
-    public void aceptar(VisitorMinijuego visitor)
+    public double aceptar(VisitorMinijuego visitor)
     {
-        visitor.visitar(this);
+        return visitor.visitar(this);
     }
 }

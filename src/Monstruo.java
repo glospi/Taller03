@@ -33,5 +33,5 @@ public abstract class Monstruo
         return resistencia;
     }
 
-    public abstract void aceptar(VisitorMinijuego visitor);
+    public abstract double aceptar(VisitorMinijuego visitor);
 }
