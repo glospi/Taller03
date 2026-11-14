@@ -104,11 +104,11 @@ public class Main
                     return false;
 
                 return sistema.agregarZombi(
-                    Integer.parseInt(campos[1]),
-                    Integer.parseInt(campos[2]),
-                    Integer.parseInt(campos[3]),
-                    Integer.parseInt(campos[4]),
-                    Integer.parseInt(campos[5]));
+                    Integer.valueOf(campos[1]),
+                    Integer.valueOf(campos[2]),
+                    Integer.valueOf(campos[3]),
+                    Integer.valueOf(campos[4]),
+                    Integer.valueOf(campos[5]));
             }
             else if (tipo.equals("Vampiro"))
             {
@@ -116,12 +116,12 @@ public class Main
                     return false;
 
                 return sistema.agregarVampiro(
-                    Integer.parseInt(campos[1]),
-                    Integer.parseInt(campos[2]),
-                    Integer.parseInt(campos[3]),
-                    Integer.parseInt(campos[4]),
-                    Integer.parseInt(campos[5]),
-                    Integer.parseInt(campos[6]));
+                    Integer.valueOf(campos[1]),
+                    Integer.valueOf(campos[2]),
+                    Integer.valueOf(campos[3]),
+                    Integer.valueOf(campos[4]),
+                    Integer.valueOf(campos[5]),
+                    Integer.valueOf(campos[6]));
             }
             else if (tipo.equals("Momia"))
             {
@@ -129,11 +129,11 @@ public class Main
                     return false;
 
                 return sistema.agregarMomia(
-                    Integer.parseInt(campos[1]),
-                    Integer.parseInt(campos[2]),
-                    Integer.parseInt(campos[3]),
-                    Integer.parseInt(campos[4]),
-                    Integer.parseInt(campos[5]));
+                    Integer.valueOf(campos[1]),
+                    Integer.valueOf(campos[2]),
+                    Integer.valueOf(campos[3]),
+                    Integer.valueOf(campos[4]),
+                    Integer.valueOf(campos[5]));
             }
             else if (tipo.equals("HombreLobo"))
             {
@@ -141,12 +141,12 @@ public class Main
                     return false;
 
                 return sistema.agregarHombreLobo(
-                    Integer.parseInt(campos[1]),
-                    Integer.parseInt(campos[2]),
-                    Integer.parseInt(campos[3]),
-                    Integer.parseInt(campos[4]),
-                    Integer.parseInt(campos[5]),
-                    Integer.parseInt(campos[6]));
+                    Integer.valueOf(campos[1]),
+                    Integer.valueOf(campos[2]),
+                    Integer.valueOf(campos[3]),
+                    Integer.valueOf(campos[4]),
+                    Integer.valueOf(campos[5]),
+                    Integer.valueOf(campos[6]));
             }
         }
         catch (NumberFormatException e)
@@ -204,7 +204,7 @@ public class Main
 
         try
         {
-            int record = Integer.parseInt(campos[1].trim());
+            int record = Integer.valueOf(campos[1].trim());
             return sistema.agregarJugador(campos[0].trim(), record);
         }
         catch (NumberFormatException e)
@@ -621,7 +621,7 @@ public class Main
 
             try
             {
-                opcion = Integer.parseInt(entrada);
+                opcion = Integer.valueOf(entrada);
             }
             catch (NumberFormatException e)
             {
