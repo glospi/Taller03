@@ -14,6 +14,7 @@ public class Main
 
     private Scanner teclado;
     private Sistema sistema;
+    private boolean finEntrada;
 
     public static void main(String[] args)
     {
@@ -44,9 +45,11 @@ public class Main
         System.out.println("=========================================");
 
         boolean salir = false;
-        while (!salir)
+        while (!salir && !finEntrada)
         {
-            iniciarSesion();
+            if (!iniciarSesion())
+                break;
+
             salir = menuPrincipal();
         }
 
@@ -210,21 +213,32 @@ public class Main
         }
     }
 
-    private void iniciarSesion()
+    private boolean iniciarSesion()
     {
-        while (true)
+        while (!finEntrada)
         {
             System.out.println();
             System.out.print("Ingrese su nombre de usuario: ");
-            String nombre = teclado.nextLine().trim();
+            String nombre = leerLinea();
+
+            if (finEntrada)
+                return false;
 
             if (sistema.iniciarSesion(nombre))
-                break;
+            {
+                mostrarBienvenida();
+                return true;
+            }
 
             System.out.println("[!] El nombre no puede estar vacío "
                 + "ni contener ';'.");
         }
 
+        return false;
+    }
+
+    private void mostrarBienvenida()
+    {
         System.out.println();
 
         if (sistema.esJugadorNuevo())
@@ -582,12 +596,27 @@ public class Main
         }
     }
 
+    private String leerLinea()
+    {
+        if (!teclado.hasNextLine())
+        {
+            finEntrada = true;
+            return "";
+        }
+
+        return teclado.nextLine().trim();
+    }
+
     private int leerOpcion(int minimo, int maximo)
     {
         while (true)
         {
             System.out.print("> ");
-            String entrada = teclado.nextLine().trim();
+            String entrada = leerLinea();
+
+            if (finEntrada)
+                return 0;
+
             int opcion;
 
             try
