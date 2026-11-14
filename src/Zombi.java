@@ -32,4 +32,17 @@ public class Zombi extends Monstruo implements Mordedor, Regenerable
     {
         return visitor.visitar(this);
     }
+
+    @Override
+    public String getTipo()
+    {
+        return "Zombi";
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Zombi | " + super.toString() + " | Mordida "
+            + fuerzaDeMordida;
+    }
 }

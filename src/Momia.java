@@ -33,4 +33,17 @@ public class Momia extends Monstruo implements Regenerable, Furioso
     {
         return visitor.visitar(this);
     }
+
+    @Override
+    public String getTipo()
+    {
+        return "Momia";
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Momia | " + super.toString() + " | Vendajes "
+            + longitudVendajes;
+    }
 }

@@ -39,4 +39,17 @@ public class Vampiro extends Monstruo implements Mordedor, Volador
     {
         return visitor.visitar(this);
     }
+
+    @Override
+    public String getTipo()
+    {
+        return "Vampiro";
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Vampiro | " + super.toString() + " | Vuelo "
+            + velocidadDeVuelo + " | Sol " + resistenciaAlSol;
+    }
 }

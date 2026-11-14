@@ -34,4 +34,13 @@ public abstract class Monstruo
     }
 
     public abstract double aceptar(VisitorMinijuego visitor);
+
+    public abstract String getTipo();
+
+    @Override
+    public String toString()
+    {
+        return "Vida " + vida + " | Vel " + velocidad + " | Fue "
+            + fuerza + " | Res " + resistencia;
+    }
 }

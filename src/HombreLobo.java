@@ -40,4 +40,17 @@ public class HombreLobo extends Monstruo implements Mordedor, Furioso
     {
         return visitor.visitar(this);
     }
+
+    @Override
+    public String getTipo()
+    {
+        return "HombreLobo";
+    }
+
+    @Override
+    public String toString()
+    {
+        return "HombreLobo | " + super.toString() + " | Ferocidad "
+            + ferocidad + " | Luna " + faseLunar;
+    }
 }
