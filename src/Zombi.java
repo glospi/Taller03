@@ -26,4 +26,10 @@ public class Zombi extends Monstruo implements Mordedor, Regenerable
     {
         return "El zombi regenera su cuerpo y recupera resistencia.";
     }
+
+    @Override
+    public void aceptar(VisitorMinijuego visitor)
+    {
+        visitor.visitar(this);
+    }
 }

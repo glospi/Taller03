@@ -34,4 +34,10 @@ public class HombreLobo extends Monstruo implements Mordedor, Furioso
         return "El hombre lobo se enfurece con la fase lunar "
             + faseLunar + ".";
     }
+
+    @Override
+    public void aceptar(VisitorMinijuego visitor)
+    {
+        visitor.visitar(this);
+    }
 }

@@ -27,4 +27,10 @@ public class Momia extends Monstruo implements Regenerable, Furioso
         return "La momia se enfurece y ataca con fuerza "
             + getFuerza() + ".";
     }
+
+    @Override
+    public void aceptar(VisitorMinijuego visitor)
+    {
+        visitor.visitar(this);
+    }
 }

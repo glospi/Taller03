@@ -33,4 +33,10 @@ public class Vampiro extends Monstruo implements Mordedor, Volador
         return "El vampiro vuela a una velocidad de "
             + velocidadDeVuelo + ".";
     }
+
+    @Override
+    public void aceptar(VisitorMinijuego visitor)
+    {
+        visitor.visitar(this);
+    }
 }
