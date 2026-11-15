@@ -461,6 +461,7 @@ public class Main
 
     private String habilidadesDe(Monstruo monstruo)
     {
+        // StringBuilder: libro POO, sección H.1, página 461.
         StringBuilder texto = new StringBuilder();
 
         if (monstruo instanceof Mordedor)
