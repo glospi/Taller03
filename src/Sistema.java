@@ -327,8 +327,28 @@ public class Sistema
         if (primero.getRecord() != segundo.getRecord())
             return primero.getRecord() > segundo.getRecord();
 
-        return primero.getNombre().compareToIgnoreCase(
-            segundo.getNombre()) < 0;
+        return sinTildes(primero.getNombre()).compareToIgnoreCase(
+            sinTildes(segundo.getNombre())) < 0;
+    }
+
+    private String sinTildes(String texto)
+    {
+        String conTilde = "áéíóúüñÁÉÍÓÚÜÑ";
+        String sinTilde = "aeiouunAEIOUUN";
+        String normal = "";
+
+        for (int i = 0; i < texto.length(); i++)
+        {
+            char letra = texto.charAt(i);
+            int posicion = conTilde.indexOf(letra);
+
+            if (posicion >= 0)
+                normal += sinTilde.charAt(posicion);
+            else
+                normal += letra;
+        }
+
+        return normal;
     }
 
     private Jugador buscarJugador(String nombre)
