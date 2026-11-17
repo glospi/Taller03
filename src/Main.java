@@ -91,6 +91,9 @@ public class Main
     {
         String[] campos = linea.split(";", -1);
 
+        for (int i = 0; i < campos.length; i++)
+            campos[i] = campos[i].trim();
+
         if (campos.length < 2)
             return false;
 
