@@ -1,11 +1,20 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * Lógica y datos del taller: monstruos, jugadores, minijuegos, historial de
+ * la sesión y récords. Los métodos {@code agregar...} validan los rangos de
+ * los atributos y devuelven {@code false} si algún valor queda fuera.
+ */
 public class Sistema
 {
+    /** Estado de cierre cuando no se jugó ningún minijuego. */
     public static final int SIN_PARTIDAS = 0;
+    /** Estado de cierre cuando el jugador se registra por primera vez. */
     public static final int JUGADOR_NUEVO = 1;
+    /** Estado de cierre cuando el puntaje de la sesión supera el récord. */
     public static final int RECORD_SUPERADO = 2;
+    /** Estado de cierre cuando el récord no se supera. */
     public static final int RECORD_MANTENIDO = 3;
 
     private ArrayList<Monstruo> monstruos;
@@ -98,6 +107,13 @@ public class Sistema
         return true;
     }
 
+    /**
+     * Inicia una sesión para el jugador indicado. Si no existe, lo crea con
+     * récord cero. Reinicia historial, puntaje y monstruos disponibles.
+     *
+     * @param nombre nombre del jugador
+     * @return {@code true} si el nombre es válido
+     */
     public boolean iniciarSesion(String nombre)
     {
         if (!nombreValido(nombre))
@@ -115,6 +131,13 @@ public class Sistema
         return true;
     }
 
+    /**
+     * Cierra la sesión, actualiza el récord si corresponde y descarta al
+     * jugador actual.
+     *
+     * @return uno de {@link #SIN_PARTIDAS}, {@link #JUGADOR_NUEVO},
+     *         {@link #RECORD_SUPERADO} o {@link #RECORD_MANTENIDO}
+     */
     public int cerrarSesion()
     {
         int estado = SIN_PARTIDAS;
@@ -163,6 +186,11 @@ public class Sistema
         return historial;
     }
 
+    /**
+     * Entrega los monstruos que todavía no se usaron en la sesión.
+     *
+     * @return copia de la lista, modificarla no altera el sistema
+     */
     public ArrayList<Monstruo> getMonstruosDisponibles()
     {
         return new ArrayList<Monstruo>(monstruosDisponibles);
@@ -203,6 +231,12 @@ public class Sistema
         return false;
     }
 
+    /**
+     * Busca el puntaje de un minijuego en el historial de la sesión.
+     *
+     * @param minijuego minijuego buscado
+     * @return puntaje obtenido, o {@code -1} si no se jugó
+     */
     public int getPuntajeMinijuego(Minijuego minijuego)
     {
         for (Resultado resultado : historial)
@@ -218,11 +252,27 @@ public class Sistema
         return monstruosDisponibles.contains(monstruo);
     }
 
+    /**
+     * Calcula el potencial de un monstruo en un minijuego.
+     *
+     * @param minijuego minijuego en el que se compite
+     * @param monstruo monstruo que compite
+     * @return potencial calculado por el minijuego
+     */
     public double calcularPotencial(Minijuego minijuego, Monstruo monstruo)
     {
         return monstruo.aceptar(minijuego);
     }
 
+    /**
+     * Registra una jugada y acumula su puntaje. Aplica el multiplicador 1.5
+     * cuando la habilidad elegida es la premiada por el minijuego.
+     *
+     * @param minijuego minijuego jugado
+     * @param monstruo monstruo usado
+     * @param habilidad habilidad elegida, o {@code null} si no se usó
+     * @return puntaje obtenido, o {@code -1} si la jugada no es válida
+     */
     public int registrarJugada(Minijuego minijuego, Monstruo monstruo,
                                String habilidad)
     {
@@ -246,6 +296,12 @@ public class Sistema
         return puntaje;
     }
 
+    /**
+     * Arma el ranking sin modificar la lista original.
+     *
+     * @return jugadores por récord descendente y, en empate, por nombre
+     *         ascendente
+     */
     public ArrayList<Jugador> getRanking()
     {
         ArrayList<Jugador> ranking = new ArrayList<Jugador>(jugadores);

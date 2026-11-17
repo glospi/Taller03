@@ -1,3 +1,7 @@
+// Lucas Ramírez
+// 22.325.313-K
+// ITI
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,6 +11,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * Punto de entrada del taller. Lee los archivos, muestra los menús y
+ * escribe el récord al terminar.
+ */
 public class Main
 {
     private static final String RUTA_MONSTRUOS = "txt/Monstruos.txt";
@@ -16,12 +24,20 @@ public class Main
     private Sistema sistema;
     private boolean finEntrada;
 
+    /**
+     * Crea la aplicación y ejecuta el ciclo principal.
+     *
+     * @param args argumentos de línea de comandos, no se usan
+     */
     public static void main(String[] args)
     {
         Main aplicacion = new Main();
         aplicacion.ejecutar();
     }
 
+    /**
+     * Carga los datos, recorre las sesiones y cierra la entrada al salir.
+     */
     public void ejecutar()
     {
         teclado = new Scanner(System.in);
