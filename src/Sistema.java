@@ -327,7 +327,8 @@ public class Sistema
         if (primero.getRecord() != segundo.getRecord())
             return primero.getRecord() > segundo.getRecord();
 
-        return primero.getNombre().compareTo(segundo.getNombre()) < 0;
+        return primero.getNombre().compareToIgnoreCase(
+            segundo.getNombre()) < 0;
     }
 
     private Jugador buscarJugador(String nombre)
