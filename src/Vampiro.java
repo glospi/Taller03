@@ -1,3 +1,6 @@
+/**
+ * Vampiro. Implementa las habilidades de morder y volar.
+ */
 public class Vampiro extends Monstruo implements Mordedor, Volador
 {
     private int velocidadDeVuelo;

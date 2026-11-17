@@ -1,3 +1,6 @@
+/**
+ * Caza de Calabazas. Premia la habilidad de morder.
+ */
 public class CazaDeCalabazas implements Minijuego
 {
     @Override

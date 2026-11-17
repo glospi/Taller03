@@ -1,3 +1,6 @@
+/**
+ * Sobrevivir al Amanecer. Premia la habilidad de regenerarse.
+ */
 public class SobrevivirAlAmanecer implements Minijuego
 {
     @Override

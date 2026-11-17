@@ -1,3 +1,6 @@
+/**
+ * Zombi. Implementa las habilidades de morder y regenerarse.
+ */
 public class Zombi extends Monstruo implements Mordedor, Regenerable
 {
     private int fuerzaDeMordida;

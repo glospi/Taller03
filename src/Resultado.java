@@ -1,3 +1,6 @@
+/**
+ * Resultado de una jugada: minijuego, monstruo, habilidad usada y puntaje.
+ */
 public class Resultado
 {
     private Minijuego minijuego;

@@ -1,3 +1,7 @@
+/**
+ * Monstruo genérico del juego. Guarda los atributos comunes y delega en un
+ * visitante el cálculo del potencial de cada minijuego.
+ */
 public abstract class Monstruo
 {
     private int vida;
@@ -33,8 +37,19 @@ public abstract class Monstruo
         return resistencia;
     }
 
+    /**
+     * Acepta un visitante para que calcule el potencial del monstruo.
+     *
+     * @param visitor minijuego que visita al monstruo
+     * @return potencial del monstruo en ese minijuego
+     */
     public abstract double aceptar(VisitorMinijuego visitor);
 
+    /**
+     * Entrega el nombre del tipo de monstruo.
+     *
+     * @return nombre usado en el catálogo y en los archivos
+     */
     public abstract String getTipo();
 
     @Override

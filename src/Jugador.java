@@ -1,3 +1,6 @@
+/**
+ * Jugador registrado, con su nombre y su mejor puntaje.
+ */
 public class Jugador
 {
     private String nombre;

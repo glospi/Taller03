@@ -1,3 +1,6 @@
+/**
+ * Lanzamiento de Lápidas. Premia la habilidad de enfurecerse.
+ */
 public class LanzamientoDeLapidas implements Minijuego
 {
     @Override

@@ -1,3 +1,6 @@
+/**
+ * Momia. Implementa las habilidades de regenerarse y enfurecerse.
+ */
 public class Momia extends Monstruo implements Regenerable, Furioso
 {
     private int longitudVendajes;

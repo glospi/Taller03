@@ -1,3 +1,6 @@
+/**
+ * Hombre lobo. Implementa las habilidades de morder y enfurecerse.
+ */
 public class HombreLobo extends Monstruo implements Mordedor, Furioso
 {
     private int ferocidad;

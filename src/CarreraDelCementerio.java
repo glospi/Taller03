@@ -1,3 +1,6 @@
+/**
+ * Carrera del Cementerio. Premia la habilidad de volar.
+ */
 public class CarreraDelCementerio implements Minijuego
 {
     @Override
