@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -312,17 +310,16 @@ public class Main
 
     private void jugarMinijuego()
     {
-        ArrayList<Minijuego> minijuegos = sistema.getMinijuegos();
         Minijuego elegido = null;
 
         while (elegido == null)
         {
             System.out.println();
             System.out.println("------ MINIJUEGOS ------");
+            int numero = 1;
 
-            for (int i = 0; i < minijuegos.size(); i++)
+            for (Minijuego minijuego : sistema.getMinijuegos())
             {
-                Minijuego minijuego = minijuegos.get(i);
                 String estado;
 
                 if (sistema.minijuegoJugado(minijuego))
@@ -336,17 +333,19 @@ public class Main
                     estado = "[PENDIENTE]";
                 }
 
-                System.out.println((i + 1) + ") " + minijuego.nombre()
+                System.out.println(numero + ") " + minijuego.nombre()
                     + "   " + estado);
+                numero++;
             }
 
             System.out.println("0) Volver");
-            int opcion = leerOpcion(0, minijuegos.size());
+            int opcion = leerOpcion(0, sistema.getMinijuegos().size());
 
             if (opcion == 0)
                 return;
 
-            Minijuego minijuego = minijuegos.get(opcion - 1);
+            Minijuego minijuego =
+                sistema.getMinijuegos().get(opcion - 1);
 
             if (sistema.minijuegoJugado(minijuego))
             {
@@ -363,10 +362,7 @@ public class Main
         System.out.println(elegido.nombre() + ": "
             + elegido.descripcion());
 
-        ArrayList<Monstruo> disponibles =
-            sistema.getMonstruosDisponibles();
-
-        if (disponibles.isEmpty())
+        if (sistema.getMonstruosDisponibles().isEmpty())
         {
             System.out.println("[!] No quedan monstruos disponibles.");
             return;
@@ -375,16 +371,23 @@ public class Main
         System.out.println();
         System.out.println("Elige el monstruo en el que te transformarás:");
 
-        for (int i = 0; i < disponibles.size(); i++)
-            System.out.println((i + 1) + ") " + disponibles.get(i));
+        int numeroMonstruo = 1;
+
+        for (Monstruo monstruo : sistema.getMonstruosDisponibles())
+        {
+            System.out.println(numeroMonstruo + ") " + monstruo);
+            numeroMonstruo++;
+        }
 
         System.out.println("0) Volver");
-        int opcionMonstruo = leerOpcion(0, disponibles.size());
+        int opcionMonstruo =
+            leerOpcion(0, sistema.getMonstruosDisponibles().size());
 
         if (opcionMonstruo == 0)
             return;
 
-        Monstruo monstruo = disponibles.get(opcionMonstruo - 1);
+        Monstruo monstruo =
+            sistema.getMonstruosDisponibles().get(opcionMonstruo - 1);
 
         System.out.println();
         System.out.println("Te comes un dulce de dudosa procedencia...");
@@ -458,11 +461,10 @@ public class Main
     {
         System.out.println();
         System.out.println("------ CATÁLOGO DE MONSTRUOS ------");
-        ArrayList<Monstruo> monstruos = sistema.getMonstruos();
+        int numero = 1;
 
-        for (int i = 0; i < monstruos.size(); i++)
+        for (Monstruo monstruo : sistema.getMonstruos())
         {
-            Monstruo monstruo = monstruos.get(i);
             String estado;
 
             if (sistema.monstruoDisponible(monstruo))
@@ -470,43 +472,42 @@ public class Main
             else
                 estado = " [USADO]";
 
-            System.out.println((i + 1) + ") " + monstruo + estado);
+            System.out.println(numero + ") " + monstruo + estado);
             System.out.println("   Habilidades: "
                 + habilidadesDe(monstruo));
+            numero++;
         }
     }
 
     private String habilidadesDe(Monstruo monstruo)
     {
-        // StringBuilder: libro POO, sección H.1, página 461.
-        StringBuilder texto = new StringBuilder();
+        String texto = "";
 
         if (monstruo instanceof Mordedor)
-            agregarHabilidad(texto, "Morder");
+            texto = agregarHabilidad(texto, "Morder");
         if (monstruo instanceof Volador)
-            agregarHabilidad(texto, "Volar");
+            texto = agregarHabilidad(texto, "Volar");
         if (monstruo instanceof Regenerable)
-            agregarHabilidad(texto, "Regenerarse");
+            texto = agregarHabilidad(texto, "Regenerarse");
         if (monstruo instanceof Furioso)
-            agregarHabilidad(texto, "Enfurecerse");
+            texto = agregarHabilidad(texto, "Enfurecerse");
 
-        return texto.toString();
+        return texto;
     }
 
-    private void agregarHabilidad(StringBuilder texto, String nombre)
+    private String agregarHabilidad(String texto, String nombre)
     {
-        if (texto.length() > 0)
-            texto.append(", ");
-        texto.append(nombre);
+        if (texto.isEmpty())
+            return nombre;
+
+        return texto + ", " + nombre;
     }
 
     private void mostrarHistorial()
     {
         System.out.println();
         System.out.println("------ HISTORIAL DE LA SESIÓN ------");
-        LinkedList<Resultado> historial = sistema.getHistorial();
-
-        if (historial.isEmpty())
+        if (sistema.getHistorial().isEmpty())
         {
             System.out.println("Todavía no has jugado ningún minijuego.");
             return;
@@ -514,7 +515,7 @@ public class Main
 
         int numero = 1;
 
-        for (Resultado resultado : historial)
+        for (Resultado resultado : sistema.getHistorial())
         {
             String habilidad = "Ninguna";
 
@@ -537,19 +538,19 @@ public class Main
     {
         System.out.println();
         System.out.println("------ RANKING ------");
-        ArrayList<Jugador> ranking = sistema.getRanking();
-
-        if (ranking.isEmpty())
+        if (sistema.getRanking().isEmpty())
         {
             System.out.println("No hay jugadores registrados.");
             return;
         }
 
-        for (int i = 0; i < ranking.size(); i++)
+        int puesto = 1;
+
+        for (Jugador jugador : sistema.getRanking())
         {
-            Jugador jugador = ranking.get(i);
-            System.out.println((i + 1) + ". " + jugador.getNombre()
+            System.out.println(puesto + ". " + jugador.getNombre()
                 + "   " + jugador.getRecord());
+            puesto++;
         }
     }
 
