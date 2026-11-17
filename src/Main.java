@@ -1,6 +1,4 @@
-// Lucas Ramírez
-// 22.325.313-K
-// ITI
+//Lucas Ramírez - 22.325.313-K - ITI
 
 import java.io.BufferedWriter;
 import java.io.File;
