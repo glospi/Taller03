@@ -41,6 +41,12 @@ java -cp bin Main
 2. Seleccionar la carpeta del proyecto.
 3. Ejecutar `Main.java` con `Run As > Java Application`.
 
+## Diagrama de clases
+
+El diagrama UML está en [`diagrama-uml.pdf`](diagrama-uml.pdf): jerarquía de
+`Monstruo`, interfaces de habilidad, patrón Visitor, minijuegos y el modelo de
+sesión. El código fuente LaTeX del diagrama queda fuera del repositorio.
+
 ## Formato de los archivos
 
 `Monstruos.txt`:
