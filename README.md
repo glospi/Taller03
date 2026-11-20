@@ -41,6 +41,31 @@ java -cp bin Main
 2. Seleccionar la carpeta del proyecto.
 3. Ejecutar `Main.java` con `Run As > Java Application`.
 
+## Clonación y ejecución
+
+```bash
+git clone https://github.com/glospi/Taller03.git
+cd Taller03
+javac -d bin src/*.java
+java -cp bin Main
+```
+
+Recordar que el programa debe ejecutarse desde la raíz del repositorio, porque
+lee `txt/Monstruos.txt` y escribe `txt/Registros.txt` con rutas relativas.
+
+## Pruebas manuales
+
+| Prueba | Acción | Resultado esperado |
+|---|---|---|
+| Archivo inválido | Agregar a `Monstruos.txt` una línea incompleta | Se descarta indicando número de línea y contenido |
+| Nombre inválido | Ingresar un nombre vacío o con `;` | Se rechaza y se pide otro nombre |
+| Repetir minijuego | Jugar dos veces el mismo minijuego | Se avisa que ya se jugó y no se deja elegir |
+| Repetir monstruo | Usar dos veces el mismo monstruo | Aparece `[USADO]` y no se deja elegir |
+| Habilidad premiada | Elegir la habilidad que premia el minijuego | Se informa `Puntaje x1.5` |
+| Otra habilidad | Elegir una habilidad distinta | Se informa que no tuvo efecto |
+| Sin monstruos | Usar los monstruos disponibles | Se avisa que no quedan disponibles |
+| Récord | Terminar sesión con más puntaje que el récord | Se guarda el nuevo récord en `Registros.txt` |
+
 ## Diagrama de clases
 
 El diagrama UML está en [`diagrama-uml.pdf`](diagrama-uml.pdf): jerarquía de
