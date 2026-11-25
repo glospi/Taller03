@@ -352,18 +352,22 @@ public class Sistema
     private String sinTildes(String texto)
     {
         String conTilde = "áéíóúüñÁÉÍÓÚÜÑ";
-        String sinTilde = "aeiouunAEIOUUN";
+        String[] sinTilde = "aeiouunAEIOUUN".split("");
+        String[] letras = texto.split("");
         String normal = "";
 
-        for (int i = 0; i < texto.length(); i++)
+        for (int i = 0; i < letras.length; i++)
         {
-            char letra = texto.charAt(i);
-            int posicion = conTilde.indexOf(letra);
+            // split("") devuelve un elemento vacío si el texto está vacío
+            if (letras[i].length() == 0)
+                continue;
+
+            int posicion = conTilde.indexOf(letras[i]);
 
             if (posicion >= 0)
-                normal += sinTilde.charAt(posicion);
+                normal += sinTilde[posicion];
             else
-                normal += letra;
+                normal += letras[i];
         }
 
         return normal;
