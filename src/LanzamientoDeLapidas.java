@@ -1,7 +1,7 @@
 /**
  * Lanzamiento de Lápidas. Premia la habilidad de enfurecerse.
  */
-public class LanzamientoDeLapidas implements Minijuego
+public class LanzamientoDeLapidas implements Minijuego, VisitorMinijuego
 {
     @Override
     public String nombre()
@@ -19,6 +19,12 @@ public class LanzamientoDeLapidas implements Minijuego
     public String habilidadPremiada()
     {
         return "Enfurecerse";
+    }
+
+    @Override
+    public double calcularPotencial(Monstruo monstruo)
+    {
+        return monstruo.aceptar(this);
     }
 
     @Override

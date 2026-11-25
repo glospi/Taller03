@@ -1,7 +1,7 @@
 /**
  * Carrera del Cementerio. Premia la habilidad de volar.
  */
-public class CarreraDelCementerio implements Minijuego
+public class CarreraDelCementerio implements Minijuego, VisitorMinijuego
 {
     @Override
     public String nombre()
@@ -20,6 +20,12 @@ public class CarreraDelCementerio implements Minijuego
     public String habilidadPremiada()
     {
         return "Volar";
+    }
+
+    @Override
+    public double calcularPotencial(Monstruo monstruo)
+    {
+        return monstruo.aceptar(this);
     }
 
     @Override

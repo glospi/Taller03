@@ -1,7 +1,7 @@
 /**
  * Caza de Calabazas. Premia la habilidad de morder.
  */
-public class CazaDeCalabazas implements Minijuego
+public class CazaDeCalabazas implements Minijuego, VisitorMinijuego
 {
     @Override
     public String nombre()
@@ -20,6 +20,12 @@ public class CazaDeCalabazas implements Minijuego
     public String habilidadPremiada()
     {
         return "Morder";
+    }
+
+    @Override
+    public double calcularPotencial(Monstruo monstruo)
+    {
+        return monstruo.aceptar(this);
     }
 
     @Override

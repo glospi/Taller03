@@ -261,7 +261,7 @@ public class Sistema
      */
     public double calcularPotencial(Minijuego minijuego, Monstruo monstruo)
     {
-        return monstruo.aceptar(minijuego);
+        return minijuego.calcularPotencial(monstruo);
     }
 
     /**

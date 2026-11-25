@@ -1,7 +1,7 @@
 /**
  * Sobrevivir al Amanecer. Premia la habilidad de regenerarse.
  */
-public class SobrevivirAlAmanecer implements Minijuego
+public class SobrevivirAlAmanecer implements Minijuego, VisitorMinijuego
 {
     @Override
     public String nombre()
@@ -19,6 +19,12 @@ public class SobrevivirAlAmanecer implements Minijuego
     public String habilidadPremiada()
     {
         return "Regenerarse";
+    }
+
+    @Override
+    public double calcularPotencial(Monstruo monstruo)
+    {
+        return monstruo.aceptar(this);
     }
 
     @Override

@@ -1,8 +1,8 @@
 /**
- * Minijuego del taller. Se describe a sí mismo y, como visitante, calcula el
- * potencial de cada monstruo.
+ * Minijuego del taller. Se describe a sí mismo y calcula el potencial de un
+ * monstruo delegando en su visitante.
  */
-public interface Minijuego extends VisitorMinijuego
+public interface Minijuego
 {
     String nombre();
 
@@ -14,4 +14,12 @@ public interface Minijuego extends VisitorMinijuego
      * @return nombre de la habilidad premiada
      */
     String habilidadPremiada();
+
+    /**
+     * Calcula el potencial de un monstruo en este minijuego.
+     *
+     * @param monstruo monstruo que compite
+     * @return potencial del monstruo en este minijuego
+     */
+    double calcularPotencial(Monstruo monstruo);
 }
