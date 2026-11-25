@@ -9,13 +9,13 @@ import java.util.LinkedList;
 public class Sistema
 {
     /** Estado de cierre cuando no se jugó ningún minijuego. */
-    public static final int SIN_PARTIDAS = 0;
+    private static final int SIN_PARTIDAS = 0;
     /** Estado de cierre cuando el jugador se registra por primera vez. */
-    public static final int JUGADOR_NUEVO = 1;
+    private static final int JUGADOR_NUEVO = 1;
     /** Estado de cierre cuando el puntaje de la sesión supera el récord. */
-    public static final int RECORD_SUPERADO = 2;
+    private static final int RECORD_SUPERADO = 2;
     /** Estado de cierre cuando el récord no se supera. */
-    public static final int RECORD_MANTENIDO = 3;
+    private static final int RECORD_MANTENIDO = 3;
 
     private ArrayList<Monstruo> monstruos;
     private ArrayList<Jugador> jugadores;
@@ -105,6 +105,24 @@ public class Sistema
 
         jugadores.add(new Jugador(nombre, record));
         return true;
+    }
+
+    /** @return estado de cierre sin partidas */
+    public int getEstadoSinPartidas()
+    {
+        return SIN_PARTIDAS;
+    }
+
+    /** @return estado de cierre de un jugador nuevo */
+    public int getEstadoJugadorNuevo()
+    {
+        return JUGADOR_NUEVO;
+    }
+
+    /** @return estado de cierre cuando se superó el récord */
+    public int getEstadoRecordSuperado()
+    {
+        return RECORD_SUPERADO;
     }
 
     /**

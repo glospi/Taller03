@@ -561,19 +561,19 @@ public class Main
         System.out.println("Sesión terminada. Puntaje total: "
             + puntaje + " puntos.");
 
-        if (estado == Sistema.SIN_PARTIDAS)
+        if (estado == sistema.getEstadoSinPartidas())
         {
             System.out.println("No jugaste ningún minijuego, "
                 + "no se guardó registro.");
             return;
         }
 
-        if (estado == Sistema.JUGADOR_NUEVO)
+        if (estado == sistema.getEstadoJugadorNuevo())
         {
             System.out.println("¡Registro creado con " + puntaje
                 + " puntos!");
         }
-        else if (estado == Sistema.RECORD_SUPERADO)
+        else if (estado == sistema.getEstadoRecordSuperado())
         {
             System.out.println("¡Nuevo récord! Antes tenías "
                 + recordAnterior + " puntos.");
