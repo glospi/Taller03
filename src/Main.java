@@ -80,7 +80,7 @@ public class Main
             while (lector.hasNextLine())
             {
                 numeroLinea++;
-                String linea = lector.nextLine().trim();
+                String linea = lector.nextLine();
 
                 if (!agregarMonstruo(linea))
                 {
@@ -101,10 +101,7 @@ public class Main
 
     private boolean agregarMonstruo(String linea)
     {
-        String[] campos = linea.split(";", -1);
-
-        for (int i = 0; i < campos.length; i++)
-            campos[i] = campos[i].trim();
+        String[] campos = separar(linea);
 
         if (campos.length < 2)
             return false;
@@ -191,7 +188,7 @@ public class Main
             while (lector.hasNextLine())
             {
                 numeroLinea++;
-                String linea = lector.nextLine().trim();
+                String linea = lector.nextLine();
 
                 if (!agregarJugador(linea))
                 {
@@ -212,15 +209,15 @@ public class Main
 
     private boolean agregarJugador(String linea)
     {
-        String[] campos = linea.split(";", -1);
+        String[] campos = separar(linea);
 
         if (campos.length != 2)
             return false;
 
         try
         {
-            int record = Integer.valueOf(campos[1].trim());
-            return sistema.agregarJugador(campos[0].trim(), record);
+            int record = Integer.valueOf(campos[1]);
+            return sistema.agregarJugador(campos[0], record);
         }
         catch (NumberFormatException e)
         {
@@ -615,6 +612,41 @@ public class Main
         }
     }
 
+    private String[] separar(String linea)
+    {
+        String[] campos = linea.split(";");
+
+        for (int i = 0; i < campos.length; i++)
+            campos[i] = quitarEspacios(campos[i]);
+
+        return campos;
+    }
+
+    private String quitarEspacios(String texto)
+    {
+        String[] letras = texto.split("");
+        int inicio = 0;
+        int fin = letras.length;
+
+        while (inicio < fin && esEspacio(letras[inicio]))
+            inicio++;
+
+        while (fin > inicio && esEspacio(letras[fin - 1]))
+            fin--;
+
+        String limpio = "";
+
+        for (int i = inicio; i < fin; i++)
+            limpio += letras[i];
+
+        return limpio;
+    }
+
+    private boolean esEspacio(String letra)
+    {
+        return letra.equals(" ") || letra.equals("\t");
+    }
+
     private String leerLinea()
     {
         if (!teclado.hasNextLine())
@@ -623,7 +655,9 @@ public class Main
             return "";
         }
 
-        return teclado.nextLine().trim();
+        String[] campos = separar(teclado.nextLine());
+
+        return campos.length == 1 ? campos[0] : "";
     }
 
     private int leerOpcion(int minimo, int maximo)
