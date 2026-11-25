@@ -267,7 +267,13 @@ public class Sistema
 
     public boolean monstruoDisponible(Monstruo monstruo)
     {
-        return monstruosDisponibles.contains(monstruo);
+        for (Monstruo disponible : monstruosDisponibles)
+        {
+            if (disponible.equals(monstruo))
+                return true;
+        }
+
+        return false;
     }
 
     /**
@@ -385,8 +391,8 @@ public class Sistema
 
     private boolean nombreValido(String nombre)
     {
-        return nombre != null && !nombre.isEmpty()
-            && nombre.indexOf(';') < 0;
+        return nombre != null && nombre.length() > 0
+            && nombre.indexOf(";") < 0;
     }
 
     private boolean rango(int valor, int minimo, int maximo)

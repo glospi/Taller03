@@ -173,13 +173,6 @@ public class Main
     {
         File archivo = new File(RUTA_REGISTROS);
 
-        if (!archivo.exists())
-        {
-            System.out.println(" > 0 jugadores cargados (no existe "
-                + RUTA_REGISTROS + ")");
-            return;
-        }
-
         try
         {
             Scanner lector = new Scanner(archivo);
@@ -494,7 +487,7 @@ public class Main
 
     private String agregarHabilidad(String texto, String nombre)
     {
-        if (texto.isEmpty())
+        if (texto.length() == 0)
             return nombre;
 
         return texto + ", " + nombre;
