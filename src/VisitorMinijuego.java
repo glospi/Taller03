@@ -20,7 +20,7 @@ public interface VisitorMinijuego
     double visitar(Vampiro vampiro);
 
     /**
-     * Calcula el potencial de un momia.
+     * Calcula el potencial de una momia.
      *
      * @param momia monstruo visitado
      * @return potencial en este minijuego
