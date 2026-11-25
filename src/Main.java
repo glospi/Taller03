@@ -220,7 +220,7 @@ public class Main
 
     private boolean iniciarSesion()
     {
-        while (!finEntrada)
+        while (!finEntrada && teclado.hasNextLine())
         {
             System.out.println();
             System.out.print("Ingrese su nombre de usuario: ");
@@ -235,8 +235,12 @@ public class Main
                 return true;
             }
 
-            System.out.println("[!] El nombre no puede estar vacío "
-                + "ni contener ';'.");
+            if (nombre.length() == 0)
+                System.out.println("[!] El nombre no puede estar "
+                    + "vacío.");
+            else
+                System.out.println("[!] El nombre no puede contener "
+                    + "';'.");
         }
 
         return false;
@@ -528,12 +532,6 @@ public class Main
     {
         System.out.println();
         System.out.println("------ RANKING ------");
-        if (sistema.getRanking().isEmpty())
-        {
-            System.out.println("No hay jugadores registrados.");
-            return;
-        }
-
         int puesto = 1;
 
         for (Jugador jugador : sistema.getRanking())
@@ -542,6 +540,9 @@ public class Main
                 + "   " + jugador.getRecord());
             puesto++;
         }
+
+        if (puesto == 1)
+            System.out.println("No hay jugadores registrados.");
     }
 
     private void terminarSesion()
@@ -648,9 +649,7 @@ public class Main
             return "";
         }
 
-        String[] campos = separar(teclado.nextLine());
-
-        return campos.length == 1 ? campos[0] : "";
+        return quitarEspacios(teclado.nextLine());
     }
 
     private int leerOpcion(int minimo, int maximo)
@@ -691,8 +690,11 @@ public class Main
         long centesimas = Math.round(valor * 100);
         long parteEntera = centesimas / 100;
         long resto = centesimas % 100;
+        String relleno = "";
 
-        return parteEntera + "."
-            + (resto < 10 ? "0" : "") + resto;
+        if (resto < 10)
+            relleno = "0";
+
+        return parteEntera + "." + relleno + resto;
     }
 }
